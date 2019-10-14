@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using SignalRJwtAndCookieAuthentication.Dtos;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
+//https://docs.microsoft.com/en-us/aspnet/core/signalr/dotnet-client?view=aspnetcore-3.0&tabs=visual-studio
 namespace Client
 {
     /// <summary>
@@ -175,6 +178,30 @@ namespace Client
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public static async Task<bool> ConnectWithRetryAsync(HubConnection connection, CancellationToken token)
+        {
+            // Keep trying to until we can start or the token is canceled.
+            while (true)
+            {
+                try
+                {
+                    await connection.StartAsync(token);
+                    Debug.Assert(connection.State == HubConnectionState.Connected);
+                    return true;
+                }
+                catch when (token.IsCancellationRequested)
+                {
+                    return false;
+                }
+                catch
+                {
+                    // Failed to connect, trying again in 5000 ms.
+                    Debug.Assert(connection.State == HubConnectionState.Disconnected);
+                    await Task.Delay(5000);
+                }
+            }
         }
     }
 }

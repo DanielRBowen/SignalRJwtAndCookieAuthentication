@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalRJwtAndCookieAuthentication.Hubs
 {
-    [Authorize]
+    //[Authorize]
     public class ChatHub : Hub
     {
         private readonly ILogger _logger;
@@ -40,13 +40,16 @@ namespace SignalRJwtAndCookieAuthentication.Hubs
         {
             try
             {
-                if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.userIdentifier == Context.UserIdentifier && connectedClient.clientType == "PC"))
+                //if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.userIdentifier == Context.UserIdentifier && connectedClient.clientType == "PC"))
+                if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.clientType == "PC"))
                 {
-                    await Clients.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", true);
+                    await Clients.All.SendAsync("sendConnectionStatus", true);
+                    //await Client.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", true);
                 }
                 else
                 {
-                    await Clients.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", false);
+                    await Clients.All.SendAsync("sendConnectionStatus", false);
+                    //await Clients.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", false);
                 }
             }
             catch (Exception ex)

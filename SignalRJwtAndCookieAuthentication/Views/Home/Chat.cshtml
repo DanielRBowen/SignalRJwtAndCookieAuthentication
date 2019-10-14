@@ -3,19 +3,21 @@
 }
 
     <div id="app" class="text-center">
-        <b-card v-if="isConnected === false">
-            <b-card-body>
-                <div class="align-middle text-center">
-                    <h1>Client is not connected</h1>
-                </div>
-            </b-card-body>
-        </b-card>
-        <b-card v-else class="text-center">
-            <b-card-body>
-                <chat></chat>
-                <button id="largeRequest" v-on:click.prevent="requestLargeData">Request Large JSON Data</button>
-            </b-card-body>
-        </b-card>
+        <div class="app-content" style="display:none;">
+            <b-card v-if="isConnected === false">
+                <b-card-body>
+                    <div class="align-middle text-center">
+                        <h1>Client is not connected</h1>
+                    </div>
+                </b-card-body>
+            </b-card>
+            <b-card v-else class="text-center">
+                <b-card-body>
+                    <chat></chat>
+                    <button class="my-4" id="largeRequest" v-on:click.prevent="requestLargeData">Request Large JSON Data</button>
+                </b-card-body>
+            </b-card>
+        </div>
     </div>
 
 @section Scripts {

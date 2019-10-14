@@ -50,7 +50,7 @@
         }
     },
     mounted() {
-        $('#app-content').css('display', 'block');
+        $('.app-content').css('display', 'block');
         store.commit('setConnection');
     }
 });
