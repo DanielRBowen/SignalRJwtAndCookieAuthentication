@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Chat";
+}
+
+    <div id="app" class="text-center">
+        <b-card v-if="isConnected === false">
+            <b-card-body>
+                <div class="align-middle text-center">
+                    <h1>Client is not connected</h1>
+                </div>
+            </b-card-body>
+        </b-card>
+        <b-card v-else class="text-center">
+            <b-card-body>
+                <chat></chat>
+                <button id="largeRequest" v-on:click.prevent="requestLargeData">Request Large JSON Data</button>
+            </b-card-body>
+        </b-card>
+    </div>
+
+@section Scripts {
+    <script src="~/js/store.js"></script>
+    <script src="~/js/components/chat-component.js"></script>
+    <script src="~/js/instance.js"></script>
+}

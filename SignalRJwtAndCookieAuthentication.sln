@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRJwtAndCookieAuthentication", "SignalRJwtAndCookieAuthentication\SignalRJwtAndCookieAuthentication.csproj", "{EC840814-9AA8-4C00-8187-74F6830857FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{CC78ABA7-98F2-4857-B537-A478C9564F59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC840814-9AA8-4C00-8187-74F6830857FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC840814-9AA8-4C00-8187-74F6830857FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC840814-9AA8-4C00-8187-74F6830857FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC840814-9AA8-4C00-8187-74F6830857FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC78ABA7-98F2-4857-B537-A478C9564F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC78ABA7-98F2-4857-B537-A478C9564F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC78ABA7-98F2-4857-B537-A478C9564F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC78ABA7-98F2-4857-B537-A478C9564F59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB4A4BF0-27F8-454F-9BF1-591C88A5DA7C}
+	EndGlobalSection
+EndGlobal
