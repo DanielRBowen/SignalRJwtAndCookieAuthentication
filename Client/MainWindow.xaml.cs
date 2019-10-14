@@ -120,8 +120,8 @@ namespace Client
                     {
                         // Get large json from https://next.json-generator.com
                         var currentDirectory = Directory.GetCurrentDirectory();
-                        var jsonData = await File.ReadAllTextAsync(currentDirectory + "\\..\\..\\..\\test25.json");
-                        //var jsonData = await File.ReadAllTextAsync(currentDirectory + "\\..\\..\\..\\test100.json");
+                        //var jsonData = await File.ReadAllTextAsync(currentDirectory + "\\..\\..\\..\\test25.json");
+                        var jsonData = await File.ReadAllTextAsync(currentDirectory + "\\..\\..\\..\\test100.json");
                         var numberOfBytes = Encoding.Default.GetByteCount(jsonData);
                         var newMessage = $"Sending large data to User:{user}, Bytes: {numberOfBytes}";
                         messagesList.Items.Add(newMessage);

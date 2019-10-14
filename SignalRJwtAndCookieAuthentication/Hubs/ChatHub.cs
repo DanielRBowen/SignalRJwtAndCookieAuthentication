@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace SignalRJwtAndCookieAuthentication.Hubs
 {
-    //[Authorize]
+    // Read Double voids comment in the Answer
+    // https://stackoverflow.com/questions/53320729/net-core-2-1-web-api-using-jwt-and-jwt-cookie-at-the-same-time
+    [Authorize(AuthenticationSchemes = "Bearer, Identity.Application")]
     public class ChatHub : Hub
     {
         private readonly ILogger _logger;
@@ -16,6 +18,7 @@ namespace SignalRJwtAndCookieAuthentication.Hubs
         {
             _logger = logger;
         }
+
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
@@ -40,16 +43,21 @@ namespace SignalRJwtAndCookieAuthentication.Hubs
         {
             try
             {
-                //if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.userIdentifier == Context.UserIdentifier && connectedClient.clientType == "PC"))
-                if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.clientType == "PC"))
+                if (Context.UserIdentifier == null)
                 {
-                    await Clients.All.SendAsync("sendConnectionStatus", true);
-                    //await Client.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", true);
+                    return;
+                }
+
+                //if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.clientType == "PC"))
+                if (HubClientStatus.ConnectedClients.Any(connectedClient => connectedClient.userIdentifier == Context.UserIdentifier && connectedClient.clientType == "PC"))
+                {
+                    //await Clients.All.SendAsync("sendConnectionStatus", true);
+                    await Clients.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", true);
                 }
                 else
                 {
-                    await Clients.All.SendAsync("sendConnectionStatus", false);
-                    //await Clients.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", false);
+                    //await Clients.All.SendAsync("sendConnectionStatus", false);
+                    await Clients.User(Context.UserIdentifier).SendAsync("sendConnectionStatus", false);
                 }
             }
             catch (Exception ex)

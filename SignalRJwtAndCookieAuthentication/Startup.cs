@@ -46,11 +46,9 @@ namespace SignalRJwtAndCookieAuthentication
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddAuthentication();
             // https://docs.microsoft.com/en-us/aspnet/core/signalr/authn-and-authz?view=aspnetcore-3.0
-
             services.AddAuthentication()
-                .AddCookie()
+                .AddCookie(options => options.SlidingExpiration = true)
                 .AddJwtBearer(options =>
                 {
                     // Configure JWT Bearer Auth to expect our security key
